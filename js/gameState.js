@@ -41,6 +41,26 @@ class gameState{
 		anuncio="";
 		this.rango=100;
 		this.insertar();
+
+		self=this;
+		document.addEventListener("touchstart",function(evt){
+			self.spacebar2(evt);
+		});
+	}
+
+	spacebar2(evt){
+		this.reset();
+
+		if (this.ship.x + 250 < evt.touches[0].pageX) {
+			this.ship.moveH(15,this.card);
+		}else if (this.ship.x+150 > evt.touches[0].pageX) {
+			this.ship.moveH(-15,this.card);
+		}else if(this.ship.y + 320> evt.touches[0].pageY){
+			this.ship.moveV(-15,this.card);
+		}else if (this.ship.y+470 < evt.touches[0].clientY) {
+			this.ship.moveV(15,this.card);
+		}
+		evt.stopPropagation();
 	}
 
 	insertar(){
